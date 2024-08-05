@@ -1,0 +1,44 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Holiday Plans - API",
+        "description": "based OpenApi",
+        "contact": {
+            "email": "bruno.caramelo5@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/holidays": {}
+    },
+    "components": {
+        "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {}
+                }
+            }
+        },
+        "parameters": {
+            "name": {
+                "name": "name",
+                "in": "query",
+                "description": "name",
+                "required": false
+            },
+            "email": {
+                "name": "email",
+                "in": "query",
+                "description": "email",
+                "required": false
+            },
+            "page": {
+                "name": "page",
+                "in": "query",
+                "description": "Page Number",
+                "required": false
+            }
+        }
+    }
+}
