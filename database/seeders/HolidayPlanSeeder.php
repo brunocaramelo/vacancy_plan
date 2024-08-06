@@ -33,8 +33,6 @@ class HolidayPlanSeeder extends Seeder
 
         ];
 
-        $participantList = [];
-
         $holidayInstance = Holiday::create([
             'id' => "df4536bf-d7e0-4b87-a67e-4d5fde79cc7b",
             'title' => "Valentines Day",
