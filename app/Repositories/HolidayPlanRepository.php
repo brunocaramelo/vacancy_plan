@@ -32,13 +32,13 @@ class HolidayPlanRepository implements HolidayPlanInterface
     {
         return $this->model::with(['participants' => function($query) use ($filters) {
                 $query->when(!empty($filters['participant_email']), function ($query) use ($filters) {
-                    $query->where('email', 'ILIKE' , '%'.$filters['participant_email'].'%');
+                    $query->where('email', 'LIKE' , '%'.$filters['participant_email'].'%');
                 })->when(!empty($filters['participant_name']), function ($query) use ($filters) {
-                    $query->where('name', 'ILIKE' , '%'.$filters['participant_name'].'%');
+                    $query->where('name', 'LIKE' , '%'.$filters['participant_name'].'%');
                 });
             }])
             ->when(!empty($filters['title']), function ($query) use ($filters) {
-                $query->where('title', 'ILIKE' , '%'.$filters['title'].'%');
+                $query->where('title', 'LIKE' , '%'.$filters['title'].'%');
             })
             ->when(!empty($filters['date_start']) && !empty($filters['date_end']), function ($query) use ($filters) {
                 $query->whereBetween('date', [$filters['date_start'], $filters['date_end']]);

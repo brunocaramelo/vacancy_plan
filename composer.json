@@ -9,6 +9,7 @@
         "darkaonline/l5-swagger": "^8.6",
         "dompdf/dompdf": "^3.0",
         "laravel/framework": "^11.9",
+        "laravel/legacy-factories": "^1.4",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",

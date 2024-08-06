@@ -287,6 +287,33 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "delete": {
+                "tags": [
+                    "holidays"
+                ],
+                "operationId": "deleteteHoliday",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id data",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "Removed"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/login": {

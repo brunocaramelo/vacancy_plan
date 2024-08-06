@@ -26,6 +26,7 @@ Route::controller(HolidayPlanController::class)
     Route::post('/', 'storeHoliday');
     Route::put('/{id}', 'updateHoliday');
     Route::get('/{id}', 'getVerboseById');
+    Route::delete('/{id}', 'deleteHoliday');
 });
 
 

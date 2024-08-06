@@ -115,8 +115,12 @@ class HolidayPlanController extends Controller
      *     tags={"holidays"},
      *     operationId="deleteteHoliday",
      *     @OA\Response(
-     *         response=422,
+     *         response=404,
      *         description="Invalid input",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Removed",
      *     ),
      *     @OA\Parameter(
      *         name="id",
@@ -124,22 +128,6 @@ class HolidayPlanController extends Controller
      *         description="id data",
      *         required=true,
      *      ),
-     *       @OA\RequestBody(
-     *         required=true,
-     *         description="Request Body Description",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
-     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
-     *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
-     *             @OA\Property(property="location", type="string", example="Event Location" ),
-     *              @OA\Property(property="participants", type="array",
-     *                 @OA\Items(
-     *                     @OA\Property(property="name", type="string", example="FistName" ),
-     *                     @OA\Property(property="last_name", type="string", example="LastName"),
-     *                     @OA\Property(property="email", type="string", example="email@test.com"),
-     *                  ),
-     *           ),*         ),
-     *     ),
      *     security={
      *        {"bearerAuth": {}},
      *     },
