@@ -10,9 +10,9 @@ class HolidayPlanService
 {
     private $holidayPlanRepository;
 
-    public function __construct(HolidayPlanInterface $strategyWms)
+    public function __construct(HolidayPlanInterface $interface)
     {
-        $this->holidayPlanRepository = $strategyWms;
+        $this->holidayPlanRepository = $interface;
     }
 
     public function searchAndPaginate(array $data)

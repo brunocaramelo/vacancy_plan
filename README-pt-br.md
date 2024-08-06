@@ -21,7 +21,7 @@ A aplicação é separada pelos seguintes conteineres
 | Service | Image | Motivação
 | --- | --- | --- |
 | postgres | postgres:latest | Banco de dados Principal |
-| php | php-wms | Aplicação Principal (Web) |
+| php | php-vacancy | Aplicação Principal (Web) |
 | web (nginx) | nginx:alpine | Web Server |
 
 ## Requisitos
@@ -56,11 +56,11 @@ A aplicação é separada pelos seguintes conteineres
     
     1 - docker-compose up -d;
 
-    2 - docker exec -t php-wms php /app/artisan migrate;
+    2 - docker exec -t php-vacancy php /app/artisan migrate;
 
-    3 - docker exec -t php-wms php /app/artisan db:seed;
+    3 - docker exec -t php-vacancy php /app/artisan db:seed;
 
-    4 - docker exec -t php-wms ./vendor/bin/phpunit;
+    4 - docker exec -t php-vacancy ./vendor/bin/phpunit;
 
     
 ### Descrição dos Passos (em caso de problemas)

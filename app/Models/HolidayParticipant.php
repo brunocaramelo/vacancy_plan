@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\HasUuid;
 
-use App\Models\StrategyWms;
 class HolidayParticipant extends Pivot
 {
     use  HasUuid, SoftDeletes;
