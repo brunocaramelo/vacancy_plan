@@ -87,12 +87,12 @@
                                 "properties": {
                                     "title": {
                                         "type": "string",
-                                        "example": "Valentines Day"
+                                        "example": "Valentines Day Other"
                                     },
                                     "date": {
                                         "type": "string",
                                         "format": "date",
-                                        "example": "2024-02-14"
+                                        "example": "2024-02-17"
                                     },
                                     "description": {
                                         "type": "string",
@@ -166,12 +166,12 @@
                                     "properties": {
                                         "title": {
                                             "type": "string",
-                                            "example": "Valentines Day"
+                                            "example": "Valentines Day Other"
                                         },
                                         "date": {
                                             "type": "string",
                                             "format": "date",
-                                            "example": "2024-02-14"
+                                            "example": "2024-02-17"
                                         },
                                         "description": {
                                             "type": "string",
@@ -236,12 +236,12 @@
                                 "properties": {
                                     "title": {
                                         "type": "string",
-                                        "example": "Valentines Day"
+                                        "example": "Valentines Day Other"
                                     },
                                     "date": {
                                         "type": "string",
                                         "format": "date",
-                                        "example": "2024-02-14"
+                                        "example": "2024-02-17"
                                     },
                                     "description": {
                                         "type": "string",

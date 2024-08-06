@@ -40,8 +40,8 @@ class HolidayPlanController extends Controller
      *         required=true,
      *         description="Request Body Description",
      *         @OA\JsonContent(
-     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
-     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="title", type="string", example="Valentines Day Other" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-17" ),
      *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
      *             @OA\Property(property="location", type="string", example="Event Location" ),
      *              @OA\Property(property="participants", type="array",
@@ -84,8 +84,8 @@ class HolidayPlanController extends Controller
      *         required=true,
      *         description="Request Body Description",
      *         @OA\JsonContent(
-     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
-     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="title", type="string", example="Valentines Day Other" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-17" ),
      *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
      *             @OA\Property(property="location", type="string", example="Event Location" ),
      *              @OA\Property(property="participants", type="array",
@@ -228,8 +228,8 @@ class HolidayPlanController extends Controller
      *         response=200,
      *         description="Invalid input",
      *         @OA\JsonContent(
-     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
-     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="title", type="string", example="Valentines Day Other" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-17" ),
      *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
      *             @OA\Property(property="location", type="string", example="Event Location" ),
      *              @OA\Property(property="participants", type="array",
