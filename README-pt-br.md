@@ -35,7 +35,7 @@ A aplicação é separada pelos seguintes conteineres
 1- Baixar repositório 
     - git clone https://github.com/brunocaramelo/vacancy_plan.git
        
-        devemos copiar .env.docker-compose para .env com o comando abaixo:
+    devemos copiar .env.docker-compose para .env com o comando abaixo:
 
         - cp docker/docker-compose-env/application.env.example docker/docker-compose-env/application.env
         
