@@ -3,7 +3,7 @@
 namespace App\Interfaces;
 
 
-interface StrategyWmsInterface
+interface UserInterface
 {
 
 }

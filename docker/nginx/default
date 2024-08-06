@@ -12,9 +12,6 @@ server {
 
     index  index.html index.htm index.php;
 
-    # sub_filter 'http://' 'https://';
-    # sub_filter_once off;
-
     root  /app/public;
 
 

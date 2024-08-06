@@ -11,7 +11,8 @@ class RepositoryBindProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('App\Interfaces\StrategyWmsInterface', 'App\Repositories\StrategyWmsRepository');
+        $this->app->bind('App\Interfaces\UserInterface', 'App\Repositories\UserRepository');
+        $this->app->bind('App\Interfaces\HolidayPlanInterface', 'App\Repositories\HolidayPlanRepository');
     }
 
     /**

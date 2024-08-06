@@ -14,9 +14,9 @@ class Holiday extends Model
     protected $table = 'holiday_plans';
     protected $fillable = [
         'title',
+        'date',
         'description',
         'location',
-        'dt_modificado',
     ];
 
     protected $dates = [
@@ -26,6 +26,7 @@ class Holiday extends Model
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(Participant::class)
-                    ->using(HolidayParticipant::class);
+                    ->using(HolidayParticipant::class)
+                    ->withTimestamps();
     }
 }

@@ -13,6 +13,17 @@ namespace App\Http\Controllers;
  *       ),
  * )
  */
+
+ /* @OA\Tag(
+ *   name="login",
+ *   description="Login"
+ * ),
+ * @OA\Tag(
+ *   name="holidays",
+ *   description="Holidays"
+ * )
+ */
+
 abstract class Controller
 {
     //

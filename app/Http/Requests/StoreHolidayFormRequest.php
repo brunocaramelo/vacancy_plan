@@ -9,7 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Carbon\Carbon;
 
 use Illuminate\Support\Collection;
-class StoreStrategyFormRequest extends FormRequest
+class StoreHolidayFormRequest extends FormRequest
 {
 
     public function authorize()
@@ -20,30 +20,37 @@ class StoreStrategyFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'dsEstrategia' => 'required|in:RETIRA,ENVIA,TRAJETO',
-            'nrPrioridade' => 'required|integer',
+            'title' => 'required|string',
+            'date' => 'required|date',
+            'description' => 'required|string',
+            'location' => 'required|string',
 
-            'horarios' => 'required',
-            'horarios.*.dsHorarioInicio' => 'required|string',
-            'horarios.*.dsHorarioFinal' => 'required|string',
-            'horarios.*.nrPrioridade' => 'required|integer',
+            'participants' => 'required',
+            'participants.*.name' => 'required|string',
+            'participants.*.last_name' => 'required|string',
+            'participants.*.email' => 'required|email',
         ];
     }
 
     public function messages()
     {
         return [
-            'dsEstrategia.required' => 'DSEstrategia é requerido',
-            'dsEstrategia.in' => 'DSEstrategia deve ser : RETIRA,ENVIA,TRAJETO',
-            'nrPrioridade.nrPrioridade' => 'NRPrioridade é requerido',
-            'nrPrioridade.integer' => 'NRPrioridade deve ser numérico',
-            'horarios' => 'nó horarios é requerido',
-            'horarios.*.dsHorarioInicio.required' => 'DSHoriariInicio é requerido',
-            'horarios.*.dsHorarioInicio.string' => 'DSHoriariInicio deve ser string',
-            'horarios.*.dsHorarioFinal.required' => 'DSHoriariFinal é requerido',
-            'horarios.*.dsHorarioFinal.string' => 'DSHoriariFinal deve ser string',
-            'horarios.*.nrPrioridade.required' => 'NRPrioridade é requerido',
-            'horarios.*.nrPrioridade.integer' => 'NRPrioridade deve ser string',
+            'title.required' => 'Title is required',
+            'title.string' => 'Title must be string',
+            'description.required' => 'Description is required',
+            'description.string' => 'Description must be string',
+            'location.required' => 'Location is required',
+            'location.string' => 'Location must be string',
+            'date.required' => 'Date is required',
+            'date.string' => 'Date must be valid Date',
+            'participants.*.name.required' => 'Participant name is required',
+            'participants.*.name.string' => 'Participant name must be string',
+            'participants.*.last_name.required' => 'Participant name is required',
+            'participants.*.last_name.string' => 'Participant name must be string',
+            'participants.*.email.required' => 'Participant name is required',
+            'participants.*.email.email' => 'Participant name must be valid email',
+
+
         ];
     }
 

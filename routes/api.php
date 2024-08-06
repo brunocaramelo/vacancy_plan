@@ -3,15 +3,27 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HolidayPlanController;
+use App\Http\Controllers\{HolidayPlanController,
+                          LoginController};
 
+
+
+Route::controller(LoginController::class)
+->prefix('/login')
+->group(function(){
+    Route::post('/', 'doLogin')->name('do-login');
+    Route::get('/', function (){
+        return response()->json(['message' => 'Unauthenticated'], 401);
+    })->name('login');
+});
 
 Route::controller(HolidayPlanController::class)
 ->prefix('/holidays')
+->middleware('auth:sanctum')
 ->group(function(){
     Route::get('/', 'listFiltered');
     Route::post('/', 'storeHoliday');
     Route::put('/{id}', 'updateHoliday');
-    Route::get('/{codeStrategy}/{hour}/{instant}/prioridade', 'findByIdentityAndHourInstant');
+    Route::get('/{id}', 'getVerboseById');
 });
 

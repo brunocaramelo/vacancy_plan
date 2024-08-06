@@ -2,56 +2,158 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\StrategyWmsService;
+use App\Services\HolidayPlanService;
 
-use App\Http\Requests\StoreStrategyFormRequest;
+use App\Http\Requests\StoreHolidayFormRequest;
 
-use App\Exceptions\PrioriyNotFoundException;
+use App\Exceptions\HolidayNotFoundException;
 
 use Illuminate\Http\Request;
 class HolidayPlanController extends Controller
 {
-    private $strategyService;
+    private $holidayService;
 
-    public function __construct(StrategyWmsService $strategyService)
+    /**
+     * @OA\SecurityScheme(
+     *     securityScheme="bearerAuth",
+     *     type="http",
+     *     scheme="bearer",
+     *     bearerFormat="JWT",
+     * )
+     */
+    public function __construct(HolidayPlanService $holidayService)
     {
-        $this->strategyService = $strategyService;
-    }
-
-    public function storeHoliday(StoreStrategyFormRequest $request)
-    {
-        $responseLogin = $this->strategyService->store($request->validated());
-
-        return response()->json( $responseLogin
-            , $responseLogin['status'] == 'success' ? 200 : 400);
+        $this->holidayService = $holidayService;
     }
 
     /**
-    *  @OA\GET(
-    *      @OA\PathItem(
-    *       path="/api/holidays",
-    *       ),
+     *
+     * @OA\Post(
+     *     path="/api/holidays",
+     *     tags={"holidays"},
+     *     operationId="addPet",
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input",
+     *     ),
+     *       @OA\RequestBody(
+     *         required=true,
+     *         description="Request Body Description",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
+     *             @OA\Property(property="location", type="string", example="Event Location" ),
+     *              @OA\Property(property="participants", type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(property="name", type="string", example="FistName" ),
+     *                     @OA\Property(property="last_name", type="string", example="LastName"),
+     *                     @OA\Property(property="email", type="string", example="email@test.com"),
+     *                  ),
+     *           ),*         ),
+     *     ),
+     *     security={
+     *        {"bearerAuth": {}},
+     *     },
+     * )
+     */
+    public function storeHoliday(StoreHolidayFormRequest $request)
+    {
+        $responseLogin = $this->holidayService->store($request->validated());
+
+        return response()->json( $responseLogin
+            , $responseLogin['status'] == 'success' ? 201 : 422);
+    }
+    /**
+     *
+     * @OA\Put(
+     *     path="/api/holidays/{id}",
+     *     tags={"holidays"},
+     *     operationId="updateHoliday",
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id data",
+     *         required=false,
+     *      ),
+     *       @OA\RequestBody(
+     *         required=true,
+     *         description="Request Body Description",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
+     *             @OA\Property(property="location", type="string", example="Event Location" ),
+     *              @OA\Property(property="participants", type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(property="name", type="string", example="FistName" ),
+     *                     @OA\Property(property="last_name", type="string", example="LastName"),
+     *                     @OA\Property(property="email", type="string", example="email@test.com"),
+     *                  ),
+     *           ),*         ),
+     *     ),
+     *     security={
+     *        {"bearerAuth": {}},
+     *     },
+     * )
+     */
+    public function updateHoliday($id, StoreHolidayFormRequest $request)
+    {
+        $responseLogin = $this->holidayService->update($id, $request->validated());
+
+        return response()->json( $responseLogin
+            , $responseLogin['status'] == 'success' ? 201 : 422);
+    }
+
+    /**
+    *  @OA\Get(
     *      path="/api/holidays",
-    *      summary="Get all users",
-    *      operationId="holidaySearch"
-    *      description="Get all users",
-    *      tags={"Test"},
+    *      operationId="holidaySearch",
+    *      tags={"holidays"},
     *      @OA\Parameter(
-    *         name="name",
+    *         name="participant_email",
     *         in="query",
     *         description="name",
     *         required=false,
     *      ),
     *     @OA\Parameter(
-    *         name="email",
+    *         name="participant_name",
     *         in="query",
     *         description="email",
+    *         required=false,
+    *      ),
+    *     @OA\Parameter(
+    *         name="title",
+    *         in="query",
+    *         description="email",
+    *         required=false,
+    *      ),
+    *     @OA\Parameter(
+    *         name="date_start",
+    *         in="query",
+    *         description="2024-10-10",
+    *         required=false,
+    *      ),
+    *     @OA\Parameter(
+    *         name="date_end",
+    *         in="query",
+    *         description="2024-11-10",
     *         required=false,
     *      ),
     *     @OA\Parameter(
     *         name="page",
     *         in="query",
     *         description="Page Number",
+    *         required=false,
+    *      ),
+    *     @OA\Parameter(
+    *         name="page_size",
+    *         in="query",
+    *         description="Page Size",
     *         required=false,
     *      ),
     *      @OA\Response(
@@ -61,13 +163,61 @@ class HolidayPlanController extends Controller
     *              mediaType="application/json",
     *          )
     *      ),
-    *
+    *     security={
+    *        {"bearerAuth": {}},
+    *     },
     *  )
     */
     public function listFiltered(Request $request)
     {
-        return $this->strategyService->searchAndPaginate($request->all());
+        return $this->holidayService->searchAndPaginate($request->all());
 
+    }
+
+     /**
+     *
+     * @OA\Get(
+     *     path="/api/holidays/{id}",
+     *     tags={"holidays"},
+     *     operationId="getItem",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id data",
+     *         required=false,
+     *      ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found",
+     *     ),
+     *       @OA\Response(
+     *         response=200,
+     *         description="Invalid input",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
+     *             @OA\Property(property="location", type="string", example="Event Location" ),
+     *              @OA\Property(property="participants", type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(property="name", type="string", example="FistName" ),
+     *                     @OA\Property(property="last_name", type="string", example="LastName"),
+     *                     @OA\Property(property="email", type="string", example="email@test.com"),
+     *                  ),
+     *           ),*         ),
+     *     ),
+     *     security={
+     *        {"bearerAuth": {}},
+     *     },
+     * )
+     */
+    public function getVerboseById($id)
+    {
+        try {
+            return response()->json($this->holidayService->getVerboseById($id), 200);
+        }   catch (HolidayNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'fail'], 404);
+        }
     }
 
 

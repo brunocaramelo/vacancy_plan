@@ -24,6 +24,7 @@ class Participant extends Model
     public function holidays(): BelongsToMany
     {
         return $this->belongsToMany(Holiday::class)
-                    ->using(HolidayParticipant::class);
+                    ->using(HolidayParticipant::class)
+                    ->withTimestamps();
     }
 }

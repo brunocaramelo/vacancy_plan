@@ -3,8 +3,8 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Exceptions\PrioriyNotFoundException;
-use App\Services\StrategyWmsService;
-use App\Repositories\StrategyWmsRepository;
+use App\Services\HolidayPlanService;
+use App\Repositories\HolidayPlanRepository;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -23,7 +23,7 @@ class StrategyWmsUnitTest extends TestCase
 
     public function test_create_strategy_success()
     {
-        $response = (new StrategyWmsService(new StrategyWmsRepository()))->store([
+        $response = (new HolidayPlanService(new HolidayPlanRepository()))->store([
                 "dsEstrategia" => "RETIRA",
                 "nrPrioridade" => 10,
                 "horarios" => [
@@ -50,13 +50,13 @@ class StrategyWmsUnitTest extends TestCase
     {
         $this->expectException(PrioriyNotFoundException::class);
 
-        (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(999, 10, 25);
+        (new HolidayPlanService(new HolidayPlanRepository()))->findByHourInstant(999, 10, 25);
 
     }
 
     public function test_find_success_priority()
     {
-        $response = (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(1, 10, 25);
+        $response = (new HolidayPlanService(new HolidayPlanRepository()))->findByHourInstant(1, 10, 25);
 
         $this->assertArrayHasKey('nrPrioridade', $response);
         $this->assertEquals(10, $response['nrPrioridade']);
@@ -64,7 +64,7 @@ class StrategyWmsUnitTest extends TestCase
 
     public function test_find_success_default_priority()
     {
-        $response = (new StrategyWmsService(new StrategyWmsRepository()))->findByHourInstant(1, 22, 35);
+        $response = (new HolidayPlanService(new HolidayPlanRepository()))->findByHourInstant(1, 22, 35);
 
         $this->assertArrayHasKey('nrPrioridade', $response);
         $this->assertEquals(10, $response['nrPrioridade']);
@@ -72,7 +72,7 @@ class StrategyWmsUnitTest extends TestCase
 
     public function test_search_success_with_results()
     {
-        $response = (new StrategyWmsService(new StrategyWmsRepository()))->searchAndPaginate([]);
+        $response = (new HolidayPlanService(new HolidayPlanRepository()))->searchAndPaginate([]);
 
         $this->assertArrayHasKey('current_page', $response);
         $this->assertArrayHasKey('data', $response);

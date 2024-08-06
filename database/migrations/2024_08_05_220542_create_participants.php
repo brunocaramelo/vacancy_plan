@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('last_name')->index();
             $table->string('email')->index();
 
+            $table->timestamps();
+            $table->softDeletes();
+
         });
     }
     /**

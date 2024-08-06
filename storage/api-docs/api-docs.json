@@ -9,36 +9,338 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/holidays": {}
-    },
-    "components": {
-        "responses": {
-            "200": {
-                "description": "OK",
-                "content": {
-                    "application/json": {}
-                }
+        "/api/holidays": {
+            "get": {
+                "tags": [
+                    "holidays"
+                ],
+                "operationId": "holidaySearch",
+                "parameters": [
+                    {
+                        "name": "participant_email",
+                        "in": "query",
+                        "description": "name",
+                        "required": false
+                    },
+                    {
+                        "name": "participant_name",
+                        "in": "query",
+                        "description": "email",
+                        "required": false
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "email",
+                        "required": false
+                    },
+                    {
+                        "name": "date_start",
+                        "in": "query",
+                        "description": "2024-10-10",
+                        "required": false
+                    },
+                    {
+                        "name": "date_end",
+                        "in": "query",
+                        "description": "2024-11-10",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page Number",
+                        "required": false
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "Page Size",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "holidays"
+                ],
+                "operationId": "addPet",
+                "requestBody": {
+                    "description": "Request Body Description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Valentines Day"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-02-14"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Valentines Day Description"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "Event Location"
+                                    },
+                                    "participants": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "FistName"
+                                                },
+                                                "last_name": {
+                                                    "type": "string",
+                                                    "example": "LastName"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "email@test.com"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
-        "parameters": {
-            "name": {
-                "name": "name",
-                "in": "query",
-                "description": "name",
-                "required": false
+        "/api/holidays/{id}": {
+            "get": {
+                "tags": [
+                    "holidays"
+                ],
+                "operationId": "getItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id data",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Valentines Day"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2024-02-14"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Valentines Day Description"
+                                        },
+                                        "location": {
+                                            "type": "string",
+                                            "example": "Event Location"
+                                        },
+                                        "participants": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "FistName"
+                                                    },
+                                                    "last_name": {
+                                                        "type": "string",
+                                                        "example": "LastName"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "email@test.com"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
-            "email": {
-                "name": "email",
-                "in": "query",
-                "description": "email",
-                "required": false
-            },
-            "page": {
-                "name": "page",
-                "in": "query",
-                "description": "Page Number",
-                "required": false
+            "put": {
+                "tags": [
+                    "holidays"
+                ],
+                "operationId": "updateHoliday",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id data",
+                        "required": false
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request Body Description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Valentines Day"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-02-14"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Valentines Day Description"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "Event Location"
+                                    },
+                                    "participants": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "FistName"
+                                                },
+                                                "last_name": {
+                                                    "type": "string",
+                                                    "example": "LastName"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "email@test.com"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "operationId": "doLogin",
+                "requestBody": {
+                    "description": "Request Body Description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@test.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Invalid input"
+                    }
+                }
             }
         }
-    }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "holidays",
+            "description": "holidays"
+        },
+        {
+            "name": "login",
+            "description": "login"
+        }
+    ]
 }

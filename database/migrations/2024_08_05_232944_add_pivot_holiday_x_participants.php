@@ -11,15 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('holidays_x_participants', function (Blueprint $table) {
+        Schema::create('holiday_participant', function (Blueprint $table) {
 
             $table->uuid('id')->primary();
 
             $table->uuid('holiday_id');
             $table->uuid('participant_id');
 
+            $table->timestamps();
+            $table->softDeletes();
+
+
             $table->foreign('holiday_id')->references('id')->on('holiday_plans');
             $table->foreign('participant_id')->references('id')->on('participants');
+
         });
     }
 
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holidays_x_participants');
+        Schema::dropIfExists('holiday_participant');
     }
 };
