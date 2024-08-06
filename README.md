@@ -107,4 +107,4 @@ After installation, the access address is (IMPORTANT):
 
 ## Observation:
 
-Laravel logs are being directed to the container's stderr, this can be seen by analyzing the container logs or running docker-compose without -d
+Laravel logs are being directed to the container's stderr, this can be seen by analyzing the container logs or running docker-compose without parameter -d
