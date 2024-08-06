@@ -21,11 +21,10 @@ class StoreHolidayFormRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'required|date|unique:holiday_plans,date',
             'description' => 'required|string',
             'location' => 'required|string',
 
-            'participants' => 'required',
             'participants.*.name' => 'required|string',
             'participants.*.last_name' => 'required|string',
             'participants.*.email' => 'required|email',
@@ -42,7 +41,8 @@ class StoreHolidayFormRequest extends FormRequest
             'location.required' => 'Location is required',
             'location.string' => 'Location must be string',
             'date.required' => 'Date is required',
-            'date.string' => 'Date must be valid Date',
+            'date.date' => 'Date must be valid Date',
+            'date.unique' => 'Date must be Unique',
             'participants.*.name.required' => 'Participant name is required',
             'participants.*.name.string' => 'Participant name must be string',
             'participants.*.last_name.required' => 'Participant name is required',

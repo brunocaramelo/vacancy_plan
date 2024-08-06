@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\HolidayPlanService;
 
-use App\Http\Requests\StoreHolidayFormRequest;
+use App\Http\Requests\{StoreHolidayFormRequest,
+                      UpdateHolidayFormRequest};
 
 use App\Exceptions\HolidayNotFoundException;
 
@@ -100,7 +101,7 @@ class HolidayPlanController extends Controller
      *     },
      * )
      */
-    public function updateHoliday($id, StoreHolidayFormRequest $request)
+    public function updateHoliday($id, UpdateHolidayFormRequest $request)
     {
         $responseLogin = $this->holidayService->update($id, $request->validated());
 
