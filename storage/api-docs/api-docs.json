@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Holiday Plans - API",
-        "description": "based OpenApi",
+        "description": "First step, go to the TAG login, execute the POST /api/login, then retrieve the value of the response: access_token, then at the top press the green Authorize button and paste the value into the field: bearerAuth (http, Bearer) of the modal, and press the green Authorize button to access the TAGS: holidays and report.",
         "contact": {
             "email": "bruno.caramelo5@gmail.com"
         },
