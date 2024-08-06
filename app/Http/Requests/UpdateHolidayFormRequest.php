@@ -54,64 +54,6 @@ class UpdateHolidayFormRequest extends FormRequest
         ];
     }
 
-
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-
-            if(count($validator->errors()) > 0) {
-                return $validator;
-            }
-
-            $sortedCollection = collect($validator->safe()->horarios)->map(function ($item) {
-                $item['dsHorarioInicioTimezone'] = Carbon::createFromFormat('H:i', $item['dsHorarioInicio']);
-                return $item;
-            })->sortBy(function ($item) {
-                return $item['dsHorarioInicioTimezone'];
-            })->toArray();
-
-            $prevItens = collect([]);
-
-            foreach ($sortedCollection as $indiceReg => $registro) {
-
-                $dataInicio = Carbon::parse($registro['dsHorarioInicio']);
-                $dataFim = Carbon::parse($registro['dsHorarioFinal']);
-
-                if($indiceReg > 0) {
-                    $prevItens->add($sortedCollection[$indiceReg -1]);
-                }
-
-                if($this->verificaColisao($prevItens, $dataInicio, $dataFim)) {
-                    $validator->errors()->add('horarios.'.$indiceReg.'.conflito', 'Conflito de range '.$registro['dsHorarioInicio'].' ate '.$registro['dsHorarioFinal'].' na lista');
-                }
-
-            }
-
-            return $validator;
-        });
-
-    }
-
-    private function verificaColisao(Collection $horarios, Carbon $inicioNovo, Carbon $fimNovo)
-    {
-            foreach ($horarios as $horario) {
-
-                $dataInicioCarbon = Carbon::parse($horario['dsHorarioInicio']);
-                $dataFimCarbon = Carbon::parse($horario['dsHorarioFinal']);
-
-                if (
-                    $inicioNovo->between($dataInicioCarbon, $dataFimCarbon) ||
-                    $fimNovo->between($dataInicioCarbon, $dataFimCarbon) ||
-                    $dataInicioCarbon->between($inicioNovo, $fimNovo) ||
-                    $dataFimCarbon->between($inicioNovo, $fimNovo)
-                ) {
-                    return true;
-                }
-            }
-
-            return false;
-    }
-
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
