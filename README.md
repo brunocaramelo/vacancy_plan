@@ -53,7 +53,7 @@ The application is separated into the following containers
      are busy.
 
 
-3 - Enter the application's home directory and run the following commands:
+3 - Enter the application's home directory and run the following commands (IMPORTANT):
     
     1 - docker-compose up -d;
 
@@ -106,7 +106,7 @@ The application is separated into the following containers
 
 ## Post Installation
 
-After installation, the access address is:
+After installation, the access address is (IMPORTANT):
 
     1 - access https://localhost/api/documentation
 
@@ -125,3 +125,5 @@ After installation, the access address is:
     - Unit Tests
 
     - Docker and docker-compose
+
+    - Swagger (OpenAPI)

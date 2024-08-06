@@ -52,7 +52,7 @@ A aplicação é separada pelos seguintes conteineres
      estão ocupadas.
 
 
-3 - Entrar no diretório base da aplicação e executar os comandos abaixo:
+3 - Entrar no diretório base da aplicação e executar os comandos abaixo (IMPORTANTE):
     
     1 - docker-compose up -d;
 
@@ -105,7 +105,7 @@ A aplicação é separada pelos seguintes conteineres
 
 ## Pós Instalação
 
-Após instalar o endereço de acesso é:
+Após instalar o endereço de acesso é (IMPORTANTE):
 
     1 - acessar https://localhost/api/documentation
 
@@ -125,3 +125,6 @@ Após instalar o endereço de acesso é:
     - Unit Tests
 
     - Docker e docker-compose
+
+    - Swagger (OpenAPI)
+
