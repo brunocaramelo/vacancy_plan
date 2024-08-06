@@ -108,6 +108,52 @@ class HolidayPlanController extends Controller
         return response()->json( $responseLogin
             , $responseLogin['status'] == 'success' ? 201 : 422);
     }
+    /**
+     *
+     * @OA\Delete(
+     *     path="/api/holidays/{id}",
+     *     tags={"holidays"},
+     *     operationId="deleteteHoliday",
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="id data",
+     *         required=true,
+     *      ),
+     *       @OA\RequestBody(
+     *         required=true,
+     *         description="Request Body Description",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Valentines Day" ),
+     *             @OA\Property(property="date", type="date", example="2024-02-14" ),
+     *             @OA\Property(property="description", type="string", example="Valentines Day Description" ),
+     *             @OA\Property(property="location", type="string", example="Event Location" ),
+     *              @OA\Property(property="participants", type="array",
+     *                 @OA\Items(
+     *                     @OA\Property(property="name", type="string", example="FistName" ),
+     *                     @OA\Property(property="last_name", type="string", example="LastName"),
+     *                     @OA\Property(property="email", type="string", example="email@test.com"),
+     *                  ),
+     *           ),*         ),
+     *     ),
+     *     security={
+     *        {"bearerAuth": {}},
+     *     },
+     * )
+     */
+    public function deleteHoliday($id)
+    {
+        try {
+            $this->holidayService->delete($id);
+            return response()->json(['message' => 'Holiday Removed'], 200);
+        }   catch (HolidayNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'fail'], 404);
+        }
+    }
 
     /**
     *  @OA\Get(

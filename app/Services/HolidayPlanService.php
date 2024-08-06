@@ -30,6 +30,17 @@ class HolidayPlanService
 
         return $instance;
     }
+    public function delete(string $id)
+    {
+
+        $instance = $this->holidayPlanRepository->getVerboseById($id);
+
+        if($instance == null) {
+            throw new HolidayNotFoundException('Holiday not found');
+        }
+
+        return $this->holidayPlanRepository->delete($id);
+    }
 
     public function store(array $params) :array
     {

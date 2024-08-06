@@ -21,6 +21,12 @@ class HolidayPlanRepository implements HolidayPlanInterface
         return $this->filterBuildData(['id' => $id])
                     ->first();
     }
+    public function delete(string $id)
+    {
+        return $this->filterBuildData(['id' => $id])
+                    ->first()
+                    ->delete();
+    }
 
     public function filterBuildData(array $filters)
     {
