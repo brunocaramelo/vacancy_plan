@@ -63,29 +63,6 @@ The application is separated into the following containers
 
     4 - docker exec -t php-vacancy ./vendor/bin/phpunit;
 
-
-    ### Description of steps (in case of problems)
-
-    1 - for the images to be stored and executed and upload the instances
-        
-        (NOTE) - due to composer's delay in bringing up the dependencies, there are 3 alternatives,
-        
-            1 - RUN sudo docker-compose up; without being a daemon the first time, so that you can check the progress of the installation of dependencies.
-            
-            2 - Wait 20 minutes or so for the command to be executed, to avoid autoloading for example.
-            
-            3 - If you have any problems with dependencies, run the command below to secure them.
-                sudo docker exec -t php-sample composer install;
-    
-    2 - for the framework to generate and apply the mapping for the database (SQL), which can be Mysql, PostGres, Oracle, SQL Server or SQLITE for example
-    
-    3 - for the framework to apply changes to the database data, in the case of inserting a first user.
-    
-    4 - generation of a hash key for use by the system as a validation key.
-    
-    5 - for the framework to run the test suite.
-        - API tests  
-        - unit tests
      
 ### Resolution of possible problems:
 
@@ -127,3 +104,7 @@ After installation, the access address is (IMPORTANT):
     - Docker and docker-compose
 
     - Swagger (OpenAPI)
+
+## Observation:
+
+    Laravel logs are being directed to the container's stderr, this can be seen by analyzing the container logs or running docker-compose without -d
