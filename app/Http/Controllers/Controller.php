@@ -21,7 +21,11 @@ namespace App\Http\Controllers;
  * @OA\Tag(
  *   name="holidays",
  *   description="Holidays"
- * )
+ * ),
+ * @OA\Tag(
+ *   name="report",
+ *   description="Report"
+ * ),
  */
 
 abstract class Controller

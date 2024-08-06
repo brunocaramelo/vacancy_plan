@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\{HolidayPlanController,
-                          LoginController};
+                          LoginController,
+                          ReportController};
 
 
 
@@ -25,5 +26,13 @@ Route::controller(HolidayPlanController::class)
     Route::post('/', 'storeHoliday');
     Route::put('/{id}', 'updateHoliday');
     Route::get('/{id}', 'getVerboseById');
+});
+
+
+Route::controller(ReportController::class)
+->prefix('/holiday/report')
+->middleware('auth:sanctum')
+->group(function(){
+    Route::get('/{id}', 'generateReportById');
 });
 

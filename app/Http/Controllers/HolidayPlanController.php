@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 class HolidayPlanController extends Controller
 {
     private $holidayService;
-
     /**
      * @OA\SecurityScheme(
      *     securityScheme="bearerAuth",
@@ -78,7 +77,7 @@ class HolidayPlanController extends Controller
      *         name="id",
      *         in="path",
      *         description="id data",
-     *         required=false,
+     *         required=true,
      *      ),
      *       @OA\RequestBody(
      *         required=true,
@@ -184,7 +183,7 @@ class HolidayPlanController extends Controller
      *         name="id",
      *         in="path",
      *         description="id data",
-     *         required=false,
+     *         required=true,
      *      ),
      *     @OA\Response(
      *         response=404,

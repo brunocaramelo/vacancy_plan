@@ -151,7 +151,7 @@
                         "name": "id",
                         "in": "path",
                         "description": "id data",
-                        "required": false
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -224,7 +224,7 @@
                         "name": "id",
                         "in": "path",
                         "description": "id data",
-                        "required": false
+                        "required": true
                     }
                 ],
                 "requestBody": {
@@ -322,6 +322,35 @@
                     }
                 }
             }
+        },
+        "/api/holiday/report/{id}": {
+            "get": {
+                "tags": [
+                    "report"
+                ],
+                "operationId": "generateReportItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id data",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -341,6 +370,10 @@
         {
             "name": "login",
             "description": "login"
+        },
+        {
+            "name": "report",
+            "description": "report"
         }
     ]
 }
