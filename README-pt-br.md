@@ -14,6 +14,7 @@ Esta aplicação conta com as seguintes especificações abaixo:
 | Postgre | 16.3 |
 | Sqlite (Testes de unidade) | 3.16.2 |
 | Laravel Framework | 11.14.* |
+| Swagger (OpenAPI) | 3.1.* |
 
 A aplicação é separada pelos seguintes conteineres
 
@@ -37,6 +38,7 @@ A aplicação é separada pelos seguintes conteineres
         devemos copiar .env.docker-compose para .env com o comando abaixo:
 
         - cp docker/docker-compose-env/application.env.example docker/docker-compose-env/application.env
+        
         - cp docker/docker-compose-env/database.env.example docker/docker-compose-env/database.env
 
 2 - Verificar se as portas:
@@ -105,9 +107,14 @@ A aplicação é separada pelos seguintes conteineres
 
 Após instalar o endereço de acesso é:
 
-- https://localhost
+    1 - acessar https://localhost/api/documentation
 
-- em docs, recuperar a collection (estrategia_WMS_bruno-caramelo.postman_collection.json) do Postman do projeto que se chama : Estrategia WMS
+    2 -  Ir para login >> /api/login , executar POST e recuperar valor de: access_token
+
+    3 -  No topo do Swagger UI apertar o Botão Authorize e colar o valor no campo: bearerAuth  (http, Bearer) e apertar Authorize
+
+    4 - Com isso podera consultar os endepoints das tags : holidays e report
+  
 
 ## Detalhes
 
