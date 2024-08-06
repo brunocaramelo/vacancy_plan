@@ -34,12 +34,12 @@ The application is separated into the following containers
     Procedures for installing the application for local use
 
 1- Download repository 
-    - git clone https://github.com/brunocaramelo/wms_strategy.git
+    - git clone https://github.com/brunocaramelo/vacancy_plan.git
        
         we must copy .env.docker-compose to .env with the command below:
 
         - cp docker/docker-compose-env/application.env.example docker/docker-compose-env/application.env
-        
+
         - cp docker/docker-compose-env/database.env.example docker/docker-compose-env/database.env
 
 2 - Check that the ports:

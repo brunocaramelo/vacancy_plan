@@ -33,7 +33,7 @@ A aplicação é separada pelos seguintes conteineres
     Procedimentos de Instação da aplicação para uso local
 
 1- Baixar repositório 
-    - git clone https://github.com/brunocaramelo/wms_strategy.git
+    - git clone https://github.com/brunocaramelo/vacancy_plan.git
        
         devemos copiar .env.docker-compose para .env com o comando abaixo:
 
