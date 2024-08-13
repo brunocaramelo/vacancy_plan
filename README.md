@@ -3,6 +3,11 @@
 
 ## Technical Specifications
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2ffbbc1e44a54828966d21be979eea1b)](https://app.codacy.com/gh/brunocaramelo/vacancy_plan/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/2ffbbc1e44a54828966d21be979eea1b)](https://app.codacy.com/gh/brunocaramelo/vacancy_plan/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+
+
 This application has the following specifications: 
 
 | Tool | Version |
