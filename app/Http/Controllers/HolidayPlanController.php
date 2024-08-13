@@ -106,7 +106,7 @@ class HolidayPlanController extends Controller
         $responseLogin = $this->holidayService->update($id, $request->validated());
 
         return response()->json( $responseLogin
-            , $responseLogin['status'] == 'success' ? 201 : 422);
+            , $responseLogin['status'] == 'success' ? 200 : 422);
     }
     /**
      *

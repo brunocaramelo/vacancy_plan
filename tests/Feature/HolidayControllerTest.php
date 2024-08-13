@@ -72,6 +72,27 @@ class HolidayControllerTest extends TestCase
         ;
 
     }
+    public function test_update_holiday_success()
+    {
+        $this->sanctumTokenGenerate();
+
+        $id = "df4536bf-d7e0-4b87-a67e-4d5fde79cc7b";
+
+        $this->putJson('/api/holidays/'.$id,[
+            "title" => "changed",
+            "date"=> "2024-02-14",
+            "description"=> "description description description",
+            "location"=> "location",
+            "participants" => [
+                [
+                    "name" => "Hey",
+                    "last_name" => "You",
+                    "email" => "heyou@emai.com"
+                ],
+          ]
+        ])->assertStatus(200);
+
+    }
     public function test_update_holiday_fail()
     {
         $this->sanctumTokenGenerate();
@@ -127,6 +148,8 @@ class HolidayControllerTest extends TestCase
         $this->get('/api/holidays?'. \Arr::query([
             'date' => "2040-11-11",
             'title' => "Not Found",
+            'participant_email' => "NotFound",
+            'participant_name' => "NotFound",
         ]))->assertStatus(200)
         ->assertJsonStructure([
             'current_page',

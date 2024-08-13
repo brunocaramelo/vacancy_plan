@@ -25,7 +25,7 @@ class LoginService
 
         return [
             'status' => 'success',
-            'message' => 'Login efetuado com sucesso',
+            'message' => 'Login with success',
             'access_token' => $user->createToken("API_TOKEN")->plainTextToken,
         ];
 
